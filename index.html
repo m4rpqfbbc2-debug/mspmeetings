@@ -751,7 +751,13 @@
                 <h3 class="form-title">Get Your Free Sample Campaign</h3>
                 <p class="form-subtitle">We'll research 10 prospects and write personalized outreach for your MSP</p>
                 
-                <form id="sample-form" action="https://formspree.io/f/placeholder" method="POST">
+                <form id="sample-form" action="https://formsubmit.co/hello@mspmeetings.com" method="POST">
+                    <!-- Formsubmit configuration -->
+                    <input type="hidden" name="_subject" value="New MSP Meetings Sample Request">
+                    <input type="hidden" name="_cc" value="aishaxgx@icloud.com">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" required placeholder="John Smith">
@@ -765,6 +771,7 @@
                     <div class="form-group">
                         <label for="email">Business Email</label>
                         <input type="email" id="email" name="email" required placeholder="you@yourmsp.com">
+                        <input type="hidden" name="_replyto" id="replyto-field">
                     </div>
                     
                     <div class="form-group">
@@ -817,6 +824,11 @@
         
         // Form submission feedback
         document.getElementById('sample-form').addEventListener('submit', function(e) {
+            // Copy email to _replyto field for Formsubmit
+            const emailField = document.getElementById('email');
+            const replytoField = document.getElementById('replyto-field');
+            replytoField.value = emailField.value;
+            
             const button = this.querySelector('.submit-btn');
             const originalText = button.textContent;
             button.textContent = 'Sending Request...';
